@@ -7,4 +7,4 @@ The design and basic structure of this site were taken from a Demo / Crash Cours
 - [ ] NPM Init
 - [ ] Create Build Scripts
 - [ ] Re-Theme
-- [ ] Deploy Site
+- [x] Deploy Site [Demo Site](https://geoklown.github.io/travelville_demo/) 
