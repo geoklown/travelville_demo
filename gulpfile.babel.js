@@ -7,21 +7,26 @@ import rename from 'gulp-rename';
 import cleanCSS from 'gulp-clean-css';
 import del from 'del';
 
+
 const paths = {
     styles: {
-        src: 'src/styles/**/*.sass',
-        dest: 'assets/styles/'
+        src: 'src/styles/css/*.*',
+        dest: 'docs/styles/css'
     },
     scripts: {
-        src: 'src/scripts/**/*.js',
-        dest: 'assets/scripts/'
+        src: 'src/scripts/**/*.*',
+        dest: 'docs/scripts/'
+    },
+    html:{
+        src: 'src *.html',
+        dest: 'docs/'
     }
 };
 
 /*
  * For small tasks you can export arrow functions
  */
-export const clean = () => del([ 'assets' ]);
+export const clean = () => del([ 'docs/scripts', 'docs/styles' ]);
 
 /*
  * You can also declare named functions and export them as tasks
@@ -42,8 +47,13 @@ export function scripts() {
     return gulp.src(paths.scripts.src, { sourcemaps: true })
         .pipe(babel())
         .pipe(uglify())
-        .pipe(concat('main.min.js'))
+        .pipe(concat('main.min.scripts'))
         .pipe(gulp.dest(paths.scripts.dest));
+}
+export function html(){
+    return gulp.src(paths.html.src)
+        .pipe(rename('index.html'))
+        .pipe(gulp.dest(paths.html.dest))
 }
 
 /*
@@ -52,12 +62,12 @@ export function scripts() {
 function watchFiles() {
     gulp.watch(paths.scripts.src, scripts);
     gulp.watch(paths.styles.src, styles);
+    gulp.watch(paths.html.src, html);
 }
-export { watchFiles as watch };
 
-const build = gulp.series(clean, gulp.parallel(styles, scripts));
+
+const build = gulp.series(clean, gulp.parallel(styles, scripts, html));
 /*
  * Export a default task
  */
-
 export default build;
