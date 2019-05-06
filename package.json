@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/geoklown/travelville_demo/issues"
   },
-  "homepage": "https://github.com/geoklown/travelville_demo#readme"
+  "homepage": "https://github.com/geoklown/travelville_demo#readme",
+  "devDependencies": {
+    "gulp": "^4.0.1"
+  }
 }
