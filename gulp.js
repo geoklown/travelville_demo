@@ -1,4 +1,0 @@
-// Pipes?
-function newFunction (){
-    
-}
